@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
-import { BeforeAfterSlider } from "@/components/before-after-slider"
 
 export function DepthSection() {
   const { t } = useLanguage()
@@ -32,14 +31,12 @@ export function DepthSection() {
               <li>{t('home.depth.document.feature3')}</li>
             </ul>
           </div>
-          <BeforeAfterSlider
-            beforeImage="/slider1.png"
-            afterImage="/slider2.png"
-            beforeAlt="Intelligent Document Processing - Before"
-            afterAlt="Intelligent Document Processing - After"
+          <Image
+            src="/document-analyzer.png"
+            alt="Intelligent Document Processing"
             width={800}
             height={500}
-            className="w-full"
+            className="rounded-xl shadow-lg w-full"
           />
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">
