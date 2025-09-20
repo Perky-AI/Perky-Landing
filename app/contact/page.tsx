@@ -29,20 +29,20 @@ const contactMethods = [
     icon: Mail,
     titleKey: 'contact.email.title',
     descriptionKey: 'contact.email.description',
-    primary: "hello@perky.com",
+    primary: "info@perky.tr",
     secondaryKey: 'contact.response.time',
     actionKey: 'contact.send.email',
-    href: "mailto:hello@perky.com",
+    href: "mailto:info@perky.tr",
     color: "text-white",
   },
   {
     icon: Building,
     titleKey: 'contact.partnership.title',
     descriptionKey: 'contact.partnership.description',
-    primary: "hello@perky.com",
+    primary: "info@perky.tr",
     secondaryKey: 'contact.discuss.possibilities',
     actionKey: 'contact.send.email',
-    href: "mailto:hello@perky.com",
+    href: "mailto:info@perky.tr",
     color: "text-white",
   },
 ]
@@ -70,13 +70,13 @@ export default function ContactPage() {
               <div className="bg-muted/50 rounded-lg p-6">
                 <Mail className="w-8 h-8 text-white mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">{t('contact.email.title')}</h3>
-                <p className="text-sm text-muted-foreground">hello@perky.com</p>
+                <p className="text-sm text-muted-foreground">info@perky.tr</p>
                 <p className="text-xs text-muted-foreground mt-1">{t('contact.response.time')}</p>
               </div>
               <div className="bg-muted/50 rounded-lg p-6">
                 <Building className="w-8 h-8 text-white mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">{t('contact.partnership.title')}</h3>
-                <p className="text-sm text-muted-foreground">hello@perky.com</p>
+                <p className="text-sm text-muted-foreground">info@perky.tr</p>
                 <p className="text-xs text-muted-foreground mt-1">{t('contact.partnership.description')}</p>
               </div>
             </div>

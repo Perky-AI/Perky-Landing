@@ -56,7 +56,7 @@ export function FeaturesSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container px-4 md:px-6">
         <ScrollReveal delay={100}>
           <div className="text-center space-y-4 mb-12">
@@ -73,14 +73,14 @@ export function FeaturesSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <ScrollReveal key={feature.titleKey} delay={200 + index * 100}>
-              <Card className="flex flex-col items-center text-center p-6 hover-lift bg-gradient-to-br from-background to-muted/20 border-border/50">
+              <Card className="flex h-full flex-col items-center text-center p-6 hover-lift bg-gradient-to-br from-background to-muted/20 border-border/50">
                 <CardHeader>
                   <div className={`bg-${feature.color}/10 p-4 rounded-full mb-4 animate-pulse-glow border border-${feature.color}/20`}>
                     <feature.icon className={`w-8 h-8 text-${feature.color}`} />
                   </div>
                   <CardTitle className="text-xl font-bold">{t(feature.titleKey)}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1">
                   <p className="text-muted-foreground text-base leading-relaxed">{t(feature.descriptionKey)}</p>
                 </CardContent>
               </Card>

@@ -17,12 +17,12 @@ export const translations: Translations = {
   'nav.getStarted': { en: 'Get Started', tr: 'Başlayın' },
 
   // Hero Section
-
-  'hero.title': { en: 'Perky AI', tr: 'Perky AI' },
-  'hero.subheadline': { en: 'Cut costs by 70% while boosting productivity 10x with intelligent workflows that work 24/7', tr: 'Akıllı otomasyon ile maliyetleri %70 azaltın, verimliliği 10 kat artırın' },
-  'hero.description': { en: 'We build custom AI-powered SaaS solutions to automate your most complex business tasks, freeing up your team to focus on what matters most.', tr: 'En karmaşık iş görevlerinizi otomatikleştirmek için özel AI destekli SaaS çözümleri geliştiriyoruz, ekibinizin en önemli konulara odaklanmasını sağlıyoruz.' },
-  'hero.demoButton': { en: 'Request a Demo', tr: 'Demo Talep Et' },
-  'hero.learnMore': { en: 'Learn More', tr: 'Daha Fazla' },
+  
+  'hero.title': { en: 'Accelerate your work with AI.', tr: 'Yapay zeka ile işinizi hızlandırın.' },
+  'hero.subheadline': { en: 'From emails to invoices, manage all your workflows on a single platform with smart assistants.', tr: 'E-postalardan faturalara kadar, tüm iş akışlarınızı tek platformda akıllı asistanlarla yönetin.' },
+  'hero.description': { en: 'Manage and automate your business processes end‑to‑end with AI assistants.', tr: 'İş süreçlerinizi uçtan uca yapay zekâ asistanlarıyla yönetin ve otomatikleştirin.' },
+  'hero.demoButton': { en: 'Try for Free', tr: 'Ücretsiz Deneyin' },
+  'hero.learnMore': { en: 'Watch Demo', tr: 'Demo izle' },
   'hero.benefit1': { en: 'Automate complex workflows with AI agents that learn and adapt to your business processes', tr: 'AI ajanları ile karmaşık süreçleri otomatikleştirin, Perky iş süreçlerinizi öğrenir ve adapte olur' },
   'hero.benefit2': { en: 'Reduce manual tasks by 80% while improving accuracy and customer response times', tr: 'Manuel görevleri %80 azaltın, hata oranını düşürün ve operasyonları hızlandırın' },
   'hero.benefit3': { en: 'Scale operations without hiring more staff - your AI team works 24/7 at fraction of the cost', tr: 'Daha fazla personel almadan operasyonları ölçeklendirin - Perky AI maliyetin küçük bir kısmıyla 7/24 çalışır' },
@@ -239,13 +239,13 @@ export const translations: Translations = {
   'contact.faq.title': { en: 'Frequently Asked Questions', tr: 'Sık Sorulan Sorular' },
   'contact.faq.subtitle': { en: 'Quick answers to common questions', tr: 'Yaygın sorulara hızlı yanıtlar' },
   'contact.faq.howToContact.question': { en: 'How can I get in touch with you?', tr: 'Sizinle nasıl iletişime geçebilirim?' },
-  'contact.faq.howToContact.answer': { en: 'You can reach us at hello@perky.com for all inquiries. We typically respond within 24 hours during business days.', tr: 'Tüm sorularınız için hello@perky.com adresinden bize ulaşabilirsiniz. Genellikle iş günlerinde 24 saat içinde yanıt veriyoruz.' },
+  'contact.faq.howToContact.answer': { en: 'You can reach us at info@perky.tr for all inquiries. We typically respond within 24 hours during business days.', tr: 'Tüm sorularınız için info@perky.tr adresinden bize ulaşabilirsiniz. Genellikle iş günlerinde 24 saat içinde yanıt veriyoruz.' },
   'contact.faq.services.question': { en: 'What services do you offer?', tr: 'Hangi hizmetleri sunuyorsunuz?' },
   'contact.faq.services.answer': { en: 'We specialize in AI-powered automation solutions through Perky, helping businesses streamline their workflows with intelligent multi-agent systems.', tr: 'Perky aracılığıyla AI destekli otomasyon çözümlerinde uzmanlaşmış durumdayız, işletmelerin akıllı çoklu ajan sistemleriyle süreçlerini düzenlemelerine yardımcı oluyoruz.' },
   'contact.faq.features.question': { en: 'Can I request new features?', tr: 'Yeni özellikler talep edebilir miyim?' },
-  'contact.faq.features.answer': { en: 'Absolutely! We welcome feature requests and feedback for Perky. Send us your suggestions at hello@perky.com and we\'ll consider them for future updates.', tr: 'Kesinlikle! Perky için özellik taleplerini ve geri bildirimleri memnuniyetle karşılıyoruz. Önerilerinizi hello@perky.com adresine gönderin, gelecekteki güncellemeler için değerlendireceğiz.' },
+  'contact.faq.features.answer': { en: 'Absolutely! We welcome feature requests and feedback for Perky. Send us your suggestions at info@perky.tr and we\'ll consider them for future updates.', tr: 'Kesinlikle! Perky için özellik taleplerini ve geri bildirimleri memnuniyetle karşılıyoruz. Önerilerinizi info@perky.tr adresine gönderin, gelecekteki güncellemeler için değerlendireceğiz.' },
   'contact.faq.partnerships.question': { en: 'Do you offer partnerships?', tr: 'Ortaklık sunuyor musunuz?' },
-  'contact.faq.partnerships.answer': { en: 'Yes, we\'re always interested in exploring partnership opportunities. Contact us at hello@perky.com to discuss collaboration possibilities.', tr: 'Evet, her zaman ortaklık fırsatlarını keşfetmekle ilgileniyoruz. İşbirliği olasılıklarını tartışmak için hello@perky.com adresinden bizimle iletişime geçin.' },
+  'contact.faq.partnerships.answer': { en: 'Yes, we\'re always interested in exploring partnership opportunities. Contact us at info@perky.tr to discuss collaboration possibilities.', tr: 'Evet, her zaman ortaklık fırsatlarını keşfetmekle ilgileniyoruz. İşbirliği olasılıklarını tartışmak için info@perky.tr adresinden bizimle iletişime geçin.' },
 
   // Common
   'common.learnMore': { en: 'Learn More', tr: 'Daha Fazla Bilgi' },

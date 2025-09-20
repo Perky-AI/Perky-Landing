@@ -28,8 +28,8 @@ export function Navigation() {
   const currentLanguage = languages.find(lang => lang.code === language) || languages[0]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center px-4 md:px-6">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex h-[84px] items-center px-4 md:px-6">
         <div className="flex-shrink-0 ml-8">
           <Link href="/" className="flex items-center">
             <Image 

@@ -2,12 +2,13 @@
 
 import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
+import { BeforeAfterSlider } from "@/components/before-after-slider"
 
 export function DepthSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-muted/30 via-muted/20 to-muted/40">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container px-4 md:px-6 space-y-16">
         <div className="text-center space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
@@ -31,12 +32,14 @@ export function DepthSection() {
               <li>{t('home.depth.document.feature3')}</li>
             </ul>
           </div>
-          <Image
-            src="/document-analyzer.png"
-            alt="Intelligent Document Processing"
+          <BeforeAfterSlider
+            beforeImage="/slider1.png"
+            afterImage="/slider2.png"
+            beforeAlt="Intelligent Document Processing - Before"
+            afterAlt="Intelligent Document Processing - After"
             width={800}
             height={500}
-            className="rounded-xl shadow-lg w-full"
+            className="w-full"
           />
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-center">

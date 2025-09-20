@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 267 100% 95.7%; /* #F3E9FF */
+    --foreground: 222.2 47.4% 11.2%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -15,7 +15,7 @@
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215.4 16.3% 38%;
     --accent: 210 40% 96%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
@@ -37,7 +37,7 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -48,7 +48,7 @@
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted-foreground: 0 0% 70%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -273,6 +273,25 @@
     opacity: 1;
     transform: scale(1);
   }
+
+  .animate-sway-x {
+    animation: swayX 3s ease-in-out infinite alternate;
+  }
+  .animate-ellipse-left {
+    animation: ellipseLeft 3s ease-in-out infinite alternate;
+  }
+  .animate-ellipse-right {
+    animation: ellipseRight 3s ease-in-out infinite alternate;
+  }
+  .animate-orbit {
+    animation: orbit 12s linear infinite;
+  }
+  .animate-orbit-350-310 {
+    animation: orbitRangeA 3.2s ease-in-out infinite alternate;
+  }
+  .animate-orbit-10-50 {
+    animation: orbitRangeB 3.2s ease-in-out infinite alternate;
+  }
 }
 
 /* Keyframe Definitions */
@@ -419,6 +438,31 @@
   100% {
     content: "...";
   }
+}
+
+@keyframes swayX {
+  0% { transform: translateX(-6px); }
+  100% { transform: translateX(6px); }
+}
+@keyframes ellipseLeft {
+  0% { transform: translate(-8px, -3px); }
+  100% { transform: translate(8px, 3px); }
+}
+@keyframes ellipseRight {
+  0% { transform: translate(8px, -3px); }
+  100% { transform: translate(-8px, 3px); }
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes orbitRangeA {
+  0% { transform: rotate(320deg); }
+  100% { transform: rotate(290deg); }
+}
+@keyframes orbitRangeB {
+  0% { transform: rotate(40deg); }
+  100% { transform: rotate(70deg); }
 }
 
 /* Reduced Motion Support */

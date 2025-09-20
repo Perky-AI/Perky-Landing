@@ -5,87 +5,111 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
+import React, { useEffect, useState } from "react"
 
 export function HeroSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+
+  const rotatingWords = language === 'tr'
+    ? [
+        'otomatikleştiriyor',
+        'dönüştürüyor',
+        'hızlandırıyor',
+        'optimize ediyor',
+        'devrimleştiriyor',
+        'akıcılaştırıyor',
+      ]
+    : [
+        'automates',
+        'transforms',
+        'accelerates',
+        'optimizes',
+        'revolutionizes',
+        'streamlines',
+      ]
+
+  const [wordIndex, setWordIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false)
+      setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % rotatingWords.length)
+        setIsVisible(true)
+      }, 200)
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [rotatingWords.length])
 
   return (
-    <section className="relative w-full py-12 md:py-20 lg:py-24 overflow-hidden">
-      {/* Enhanced background with brand elements */}
+    <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden bg-background">
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30 -z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-blue/10 via-transparent to-brand-purple/10 -z-10" />
-      
       <div className="container px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <ScrollReveal direction="left" delay={200}>
-            <div className="space-y-4 text-center md:text-left">
-              
-              {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
-                {t('hero.title')}
-              </h1>
-
-              {/* Subheadline */}
-              <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-brand-purple leading-relaxed">
-                {t('hero.subheadline')}
-              </h2>
-              
-              {/* Key Benefits */}
-              <div className="space-y-3 max-w-[600px] mx-auto md:mx-0">
-                <div className="flex items-start gap-3">
-                  <div className="w-2.5 h-2.5 bg-brand-blue rounded-full mt-1.5 flex-shrink-0"></div>
-                  <p className="text-foreground text-base font-medium leading-relaxed">{t('hero.benefit1')}</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2.5 h-2.5 bg-brand-purple rounded-full mt-1.5 flex-shrink-0"></div>
-                  <p className="text-foreground text-base font-medium leading-relaxed">{t('hero.benefit2')}</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2.5 h-2.5 bg-gradient-to-r from-brand-blue to-brand-purple rounded-full mt-1.5 flex-shrink-0"></div>
-                  <p className="text-foreground text-base font-medium leading-relaxed">{t('hero.benefit3')}</p>
-                </div>
-              </div>
-
-              {/* Social Proof */}
-              <div className="flex flex-wrap items-center gap-3 p-3 bg-gradient-to-r from-brand-blue/5 to-brand-purple/5 border border-brand-blue/10 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-black bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">10x</span>
-                  <span className="text-xs font-medium text-foreground">{t('hero.stats.productivity')}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-black text-brand-purple">24/7</span>
-                  <span className="text-xs font-medium text-foreground">{t('hero.stats.uptime')}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-black text-brand-blue">70%</span>
-                  <span className="text-xs font-medium text-foreground">{t('hero.stats.savings')}</span>
+        <div className="grid md:grid-cols-2 items-center gap-12">
+          <div>
+            <ScrollReveal direction="left" delay={150}>
+              <div className="text-left space-y-5" style={{ paddingBottom: '0.5rem' }}>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground leading-relaxed" style={{ minHeight: '1.4em', overflow: 'visible' }}>
+                  {language === 'tr' ? 'Perky AI iş süreçlerinizi' : 'Perky AI'}{' '}
+                  <span
+                    className={
+                      `inline-block bg-gradient-to-r from-[#9B30FF] to-[#1E90FF] bg-clip-text text-transparent transition-all duration-200 ` +
+                      (isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1')
+                    }
+                    style={{ paddingBottom: '0.2em' }}
+                  >
+                    {rotatingWords[wordIndex]}
+                  </span>
+                  {language === 'en' ? ' your business processes' : ''}
+                </h1>
+                <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl">
+                  {t('hero.subheadline')}
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="w-full sm:w-auto bg-foreground text-background hover:opacity-90 font-bold px-6 py-3">
+                    <Link href="/pricing">{t('hero.demoButton')}</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                    <Link href="/features">{t('hero.learnMore')}</Link>
+                  </Button>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Button asChild size="lg" className="w-full sm:w-auto bg-gradient-to-r from-brand-blue to-brand-purple hover:from-brand-blue/90 hover:to-brand-purple/90 text-white font-bold text-base px-6 py-3 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0">
-                  <Link href="/contact">
-                    {t('hero.demoButton')}
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-2 border-brand-purple/30 text-brand-purple hover:bg-brand-purple/10 hover:border-brand-purple/50 font-semibold text-base px-6 py-3 transition-all duration-300">
-                  <Link href="/features">
-                    {t('hero.learnMore')}
-                  </Link>
-                </Button>
+            </ScrollReveal>
+          </div>
+          <div>
+            <ScrollReveal direction="right" delay={250}>
+              <div className="relative w-full mt-6 md:mt-0">
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                  <span className="block w-[290%] md:w-[80%] h-[78%] md:h-[130%] rounded-full border border-white/20 dark:border-white/10 shadow-[0_0_40px_rgba(155,48,255,0.25)]" />
+                  {/* Revolving agents along ellipse */}
+                  <div className="absolute inset-0 z-10 flex items-center justify-center">
+                    <div className="relative w-[352%] md:w-[96.8%] h-[94.6%] md:h-[157.3%] origin-center animate-orbit-350-310" style={{ transformOrigin: '50% 50%' }}>
+                      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                        <Image src="/agent1.png" alt="Agent 1" width={56} height={56} className="h-10 w-10 md:h-14 md:w-14 transform scale-[2.5] bg-transparent" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 z-10 flex items-center justify-center">
+                    <div className="relative w-[352%] md:w-[96.8%] h-[94.6%] md:h-[157.3%] origin-center animate-orbit-10-50" style={{ transformOrigin: '50% 50%' }}>
+                      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                        <Image src="/agent2.png" alt="Agent 2" width={56} height={56} className="h-10 w-10 md:h-14 md:w-14 transform scale-[2.5] bg-transparent" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <Image
+                  src="/illus1.png"
+                  alt="Perky hero illustration"
+                  width={1280}
+                  height={720}
+                  className="w-[46%] md:w-[60%] h-auto object-contain mx-auto"
+                  priority
+                />
               </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="right" delay={400}>
-            <div className="relative w-full">
-              <Image
-                src="/images/Hero_image.png"
-                alt="Hero Image"
-                width={1200}
-                height={900}
-                className="w-full h-auto min-h-[350px] max-h-[500px] object-cover rounded-xl shadow-2xl hover-scale transition-transform duration-300"
-              />
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

@@ -69,7 +69,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen text-foreground bg-background">
       <Script
         id="structured-data"
         type="application/ld+json"

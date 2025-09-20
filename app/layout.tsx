@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
-import { ThemeProvider } from "@/components/theme-provider"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { LanguageProvider } from "@/lib/language-context"
 
@@ -104,13 +103,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Perky" />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <LanguageProvider>
-            <Navigation />
-            {children}
-            <ScrollToTop />
-          </LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <Navigation />
+          {children}
+          <ScrollToTop />
+        </LanguageProvider>
       </body>
     </html>
   )

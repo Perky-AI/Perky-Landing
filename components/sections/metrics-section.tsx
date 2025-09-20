@@ -8,7 +8,7 @@ export function MetricsSection() {
   const { t } = useLanguage()
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container px-4 md:px-6">
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="text-center bg-gradient-to-br from-brand-blue/5 to-brand-blue/10 border border-brand-blue/20">
