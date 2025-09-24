@@ -1,0 +1,44 @@
+.shinyText {
+  position: relative;
+  display: inline-block;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: currentColor;
+}
+
+.shinyText::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  color: transparent;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.425) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation-name: shinySweep;
+  animation-duration: var(--animation-duration, 5s);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.shinyText { --animation-duration: 5s; }
+
+.disabled::after {
+  animation: none;
+}
+
+@keyframes shinySweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+

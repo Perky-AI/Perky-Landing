@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 export function HeroSection() {
   const { t, language } = useLanguage()
@@ -45,7 +45,9 @@ export function HeroSection() {
 
   return (
     <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30 -z-20" />
+      {/* Cherry petal canvas animation */}
+      <PetalCanvas />
       <div className="container px-4 md:px-6">
         <div className="grid md:grid-cols-2 items-center gap-12">
           <div>
@@ -68,10 +70,10 @@ export function HeroSection() {
                   {t('hero.subheadline')}
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="w-full sm:w-auto bg-foreground text-background hover:opacity-90 font-bold px-6 py-3">
+                  <Button asChild size="lg" className="w-full sm:w-auto bg-gradient-to-r from-[#9B30FF] to-[#1E90FF] text-white hover:opacity-95 font-bold px-6 py-3 shadow-lg shadow-[rgba(30,144,255,0.25)]">
                     <Link href="/pricing">{t('hero.demoButton')}</Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto bg-white text-foreground hover:bg-white/90 shadow-md border-transparent">
                     <Link href="/features">{t('hero.learnMore')}</Link>
                   </Button>
                 </div>
@@ -113,5 +115,134 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+  )
+}
+
+function PetalCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const container = containerRef.current
+    if (!canvas || !container) return
+
+    const ensuredCanvas = canvas as HTMLCanvasElement
+    const ensuredContainer = container as HTMLDivElement
+    const maybeCtx = ensuredCanvas.getContext('2d')
+    if (!maybeCtx) return
+    const drawCtx = maybeCtx as CanvasRenderingContext2D
+
+    let animationFrameId = 0
+    const TOTAL = 100
+    const petalArray: PetalParticle[] = []
+
+    const petalImg = new globalThis.Image()
+    petalImg.src = 'https://djjjk9bjm164h.cloudfront.net/petal.png'
+
+    function sizeToContainer() {
+      ensuredCanvas.width = Math.floor(window.innerWidth)
+      ensuredCanvas.height = Math.floor(window.innerHeight)
+    }
+
+    sizeToContainer()
+
+    let mouseX = 0
+    function touchHandler(e: MouseEvent | TouchEvent) {
+      // Use window width to preserve original behavior
+      const clientX = (e as TouchEvent).touches?.[0]?.clientX ?? (e as MouseEvent).clientX ?? 0
+      mouseX = window.innerWidth ? clientX / window.innerWidth : 0
+    }
+
+    window.addEventListener('mousemove', touchHandler)
+    window.addEventListener('touchmove', touchHandler, { passive: true })
+
+    function handleResize() {
+      sizeToContainer()
+    }
+    window.addEventListener('resize', handleResize)
+
+    class PetalParticle {
+      x: number
+      y: number
+      w: number
+      h: number
+      opacity: number
+      flip: number
+      xSpeed: number
+      ySpeed: number
+      flipSpeed: number
+
+      constructor() {
+        this.x = Math.random() * ensuredCanvas.width
+        this.y = (Math.random() * ensuredCanvas.height * 2) - ensuredCanvas.height
+        this.w = 25 + Math.random() * 15
+        this.h = 20 + Math.random() * 10
+        this.opacity = this.w / 40
+        this.flip = Math.random()
+        this.xSpeed = 0.2 + Math.random() * 1.0
+        this.ySpeed = 0.1 + Math.random() * 0.7
+        this.flipSpeed = Math.random() * 0.03
+      }
+
+      draw() {
+        if (this.y > ensuredCanvas.height || this.x > ensuredCanvas.width) {
+          this.x = -petalImg.width
+          this.y = (Math.random() * ensuredCanvas.height * 2) - ensuredCanvas.height
+          this.xSpeed = 0.5 + Math.random() * 1.0
+          this.ySpeed = 0.3 + Math.random() * 0.7
+          this.flip = Math.random()
+        }
+        drawCtx.globalAlpha = this.opacity
+        drawCtx.drawImage(
+          petalImg,
+          this.x,
+          this.y,
+          this.w * (0.6 + (Math.abs(Math.cos(this.flip)) / 3)),
+          this.h * (0.8 + (Math.abs(Math.sin(this.flip)) / 5))
+        )
+      }
+
+      animate() {
+        this.x += this.xSpeed + mouseX * 2
+        this.y += this.ySpeed + mouseX * 0.6
+        this.flip += this.flipSpeed
+        this.draw()
+      }
+    }
+
+    function render() {
+      drawCtx.clearRect(0, 0, ensuredCanvas.width, ensuredCanvas.height)
+      petalArray.forEach(p => p.animate())
+      animationFrameId = window.requestAnimationFrame(render)
+    }
+
+    function init() {
+      petalArray.length = 0
+      for (let i = 0; i < TOTAL; i++) {
+        petalArray.push(new PetalParticle())
+      }
+      render()
+    }
+
+    if (petalImg.complete) {
+      init()
+    } else {
+      petalImg.addEventListener('load', init)
+    }
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId)
+      petalImg.removeEventListener('load', init)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('mousemove', touchHandler)
+      window.removeEventListener('touchmove', touchHandler)
+    }
+  }, [])
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none">
+      <canvas ref={canvasRef} className="w-full h-full" />
+    </div>
   )
 }

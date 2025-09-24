@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Swiper CSS */
+@import 'swiper/css';
+
+/* Global Swiper overrides for smooth marquee */
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.swiper-slide {
+  transition-timing-function: linear !important;
+}
+
 @layer base {
   :root {
     --background: 267 100% 95.7%; /* #F3E9FF */

@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import { Mail, CalendarDays, FileText, LayoutDashboard, Users, Workflow } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import ShinyText from "@/components/shiny-text"
 
 interface Feature {
   icon: LucideIcon
@@ -78,7 +79,9 @@ export function FeaturesSection() {
                   <div className={`bg-${feature.color}/10 p-4 rounded-full mb-4 animate-pulse-glow border border-${feature.color}/20`}>
                     <feature.icon className={`w-8 h-8 text-${feature.color}`} />
                   </div>
-                  <CardTitle className="text-xl font-bold">{t(feature.titleKey)}</CardTitle>
+                  <CardTitle className="text-xl font-bold">
+                    <ShinyText text={t(feature.titleKey)} speed={6} />
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1">
                   <p className="text-muted-foreground text-base leading-relaxed">{t(feature.descriptionKey)}</p>

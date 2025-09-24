@@ -5,35 +5,9 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
+import { InfiniteSlider } from "@/components/core/infinite-slider"
 
-interface Integration {
-  name: string
-  descriptionKey: string
-  logo: string
-}
-
-const integrations: Integration[] = [
-  {
-    name: "Gmail",
-    descriptionKey: 'integration.gmail.description',
-    logo: "/images/integrations/gmail.png",
-  },
-  { 
-    name: "Salesforce", 
-    descriptionKey: 'integration.salesforce.description', 
-    logo: "/images/integrations/salesforce.png" 
-  },
-  {
-    name: "Microsoft Teams",
-    descriptionKey: 'integration.teams.description',
-    logo: "/images/integrations/teams.png",
-  },
-  { 
-    name: "Google Workspace", 
-    descriptionKey: 'integration.google.description', 
-    logo: "/images/integrations/google.png" 
-  },
-]
+// Grid removed; keeping only the slider presentation
 
 export function IntegrationsSection() {
   const { t } = useLanguage()
@@ -47,48 +21,27 @@ export function IntegrationsSection() {
               {t('home.integrations.title')}
             </span>
           </h2>
-          <p className="max-w-2xl mx-auto text-muted-foreground md:text-lg">
+          <p className="max-w-2xl mx-auto text-muted-foreground md:text-lg mb-16 md:mb-24">
             {t('home.integrations.subtitle')}
           </p>
+          {/* Infinite slider of integrations logos */}
+          <div className="mt-28 md:mt-40">
+            <div className="h-10 md:h-16" />
+            <div className="scale-[1.6] origin-top translate-y-6 md:translate-y-10">
+              <InfiniteSlider gap={32} speedSeconds={16} reverse>
+                <img src="/images/integrations/gmail.png" alt="Gmail" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/outlook.png" alt="Outlook" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/salesforce.png" alt="Salesforce" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/dropbox.png" alt="Dropbox" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/Gdrive.png" alt="Google Drive" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/Gsheets.png" alt="Google Sheets" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/googlecalendar.png" alt="Google Calendar" className="h-10 w-auto opacity-90" />
+                <img src="/images/integrations/linkedin.png" alt="LinkedIn" className="h-10 w-auto opacity-90" />
+              </InfiniteSlider>
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {integrations.map((integration) => (
-            <Card key={integration.name} className="flex flex-col h-full">
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Image
-                  src={integration.logo || "/placeholder.svg"}
-                  alt={`${integration.name} logo`}
-                  width={48}
-                  height={48}
-                />
-                <CardTitle>{integration.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col flex-1">
-                <CardDescription className="flex-1">{t(integration.descriptionKey)}</CardDescription>
-                <div className="flex items-center justify-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-lg mt-4">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-green-700">
-                    {t('home.integrations.viewIntegration')}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        
-        {/* More Integrations Button */}
-        <div className="text-center mt-12">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 border-brand-purple text-brand-purple hover:bg-brand-purple/10 hover:border-brand-purple/50 font-semibold"
-            asChild
-          >
-            <Link href="/integrations">
-              {t('home.integrations.more')}
-            </Link>
-          </Button>
-        </div>
+        {/* Slider only; cards removed */}
       </div>
     </section>
   )
