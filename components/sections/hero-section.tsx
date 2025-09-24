@@ -5,10 +5,10 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
-import React, { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 
-const SparklesCore = dynamic(() => import("@/components/core/sparkles-core").then(mod => mod.SparklesCore), {
+const VantaBackground = dynamic(() => import("@/components/vanta-background"), {
   ssr: false,
   loading: () => <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30" />,
 })
@@ -49,31 +49,15 @@ export function HeroSection() {
     return () => clearInterval(interval)
   }, [rotatingWords.length])
 
-  const sparklesBackground = useMemo(
-    () => (
-      <SparklesCore
-        id="perky-particles"
-        background="transparent"
-        minSize={0.8}
-        maxSize={2.5}
-        particleDensity={140}
-        className="w-full h-full"
-        particleColor="#9B30FF"
-        speed={2}
-      />
-    ),
-    [],
-  )
-
   return (
-    <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden bg-transparent">
-      {/* Sparkles Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {sparklesBackground}
+    <section className="relative w-full min-h-screen py-16 md:py-20 lg:py-24 overflow-hidden bg-transparent flex items-center">
+      {/* Vanta Background */}
+      <div className="absolute inset-0 z-0">
+        <VantaBackground />
       </div>
 
-      <div className="container px-4 md:px-6">
-        <div className="grid md:grid-cols-2 items-center gap-12">
+      <div className="container px-4 md:px-6 relative z-10">
+        <div className="grid md:grid-cols-2 items-center gap-12 sm:-translate-y-4 md:-translate-y-12 lg:-translate-y-16">
           <div>
             <ScrollReveal direction="left" delay={150}>
               <div className="text-left space-y-5" style={{ paddingBottom: '0.5rem' }}>
