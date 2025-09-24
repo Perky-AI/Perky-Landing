@@ -217,37 +217,37 @@ export function ComparisonChart() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Without AI Card */}
             <ScrollReveal direction="left" delay={200}>
-              <Card className="bg-red-50 border-red-200 h-full relative hover-lift">
+              <Card className="bg-gradient-to-br from-gray-50 to-rose-50 border border-rose-200 h-full relative hover-lift">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-red-700 flex items-center justify-center gap-2 text-xl">
+                  <CardTitle className="text-rose-700 flex items-center justify-center gap-2 text-xl">
                     <Clock className="w-6 h-6" />
                     {t('home.comparison.withoutAI.title')}
                   </CardTitle>
-                  <p className="text-red-700 text-sm">{t('home.comparison.withoutAI.subtitle')}</p>
+                  <p className="text-rose-700 text-sm">{t('home.comparison.withoutAI.subtitle')}</p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {comparisonData.map((feature, index) => (
                     <div
                       key={feature.id}
-                      className={`border-b border-red-200 pb-3 last:border-b-0 animate-fade-in-up animate-delay-${(index + 1) * 100}`}
+                      className={`border-b border-rose-200 pb-3 last:border-b-0 animate-fade-in-up animate-delay-${(index + 1) * 100}`}
                     >
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                          <div className="bg-red-100 p-2 rounded-lg">
-                            <feature.icon className="w-5 h-5 text-red-600" />
+                          <div className="bg-rose-100 p-2 rounded-lg">
+                            <feature.icon className="w-5 h-5 text-rose-600" />
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-base text-gray-900">{t(feature.titleKey)}</h4>
-                            <p className="text-sm text-red-700">{t(feature.withoutAI.descriptionKey)}</p>
+                            <p className="text-sm text-rose-700">{t(feature.withoutAI.descriptionKey)}</p>
                           </div>
                         </div>
                         <div className="space-y-1">
                           <div className="text-center">
-                            <span className="text-lg font-bold text-red-700">{t(feature.withoutAI.timeKey)}</span>
+                            <span className="text-lg font-bold text-rose-700">{t(feature.withoutAI.timeKey)}</span>
                           </div>
                           <SimpleProgressBar
                             value={feature.withoutAI.effort}
-                            className="bg-red-500"
+                            className="bg-rose-500"
                             animated={isInView}
                           />
                         </div>
@@ -260,37 +260,41 @@ export function ComparisonChart() {
 
             {/* With AI Card */}
             <ScrollReveal direction="right" delay={400}>
-              <Card className="bg-green-50 border-green-200 h-full relative hover-lift">
+              <Card className="bg-gradient-to-br from-brand-blue/5 to-brand-purple/10 border border-brand-blue/20 h-full relative hover-lift">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-green-700 flex items-center justify-center gap-2 text-xl">
+                  <CardTitle className="flex items-center justify-center gap-2 text-xl">
                     <Zap className="w-6 h-6" />
-                    {t('home.comparison.withAI.title')}
+                    <span className="bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
+                      {t('home.comparison.withAI.title')}
+                    </span>
                   </CardTitle>
-                  <p className="text-green-700 text-sm">{t('home.comparison.withAI.subtitle')}</p>
+                  <p className="text-sm bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">
+                    {t('home.comparison.withAI.subtitle')}
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {comparisonData.map((feature, index) => (
                     <div
                       key={feature.id}
-                      className={`border-b border-green-200 pb-3 last:border-b-0 animate-fade-in-up animate-delay-${(index + 2) * 100}`}
+                      className={`border-b border-brand-blue/20 pb-3 last:border-b-0 animate-fade-in-up animate-delay-${(index + 2) * 100}`}
                     >
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                          <div className="bg-green-100 p-2 rounded-lg">
-                            <feature.icon className="w-5 h-5 text-green-600" />
+                          <div className="bg-brand-blue/10 p-2 rounded-lg">
+                            <feature.icon className="w-5 h-5 text-brand-blue" />
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-base text-gray-900">{t(feature.titleKey)}</h4>
-                            <p className="text-sm text-green-700">{t(feature.withAI.descriptionKey)}</p>
+                            <p className="text-sm text-brand-blue">{t(feature.withAI.descriptionKey)}</p>
                           </div>
                         </div>
                         <div className="space-y-1">
                           <div className="text-center">
-                            <span className="text-lg font-bold text-green-700">{t(feature.withAI.timeKey)}</span>
+                            <span className="text-lg font-bold bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">{t(feature.withAI.timeKey)}</span>
                           </div>
                           <SimpleProgressBar
                             value={feature.withAI.effort}
-                            className="bg-green-500"
+                            className="bg-brand-blue"
                             animated={isInView}
                           />
                         </div>
@@ -307,22 +311,22 @@ export function ComparisonChart() {
           {/* Summary Stats */}
           <ScrollReveal delay={600}>
             <div className="mt-12 grid md:grid-cols-3 gap-6">
-              <Card className="text-center bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover-scale">
+              <Card className="text-center bg-gradient-to-br from-brand-blue/5 to-brand-blue/10 border-brand-blue/20 hover-scale">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-blue-600 mb-2 animate-bounce-in">90%</div>
-                  <p className="text-sm text-blue-700">{t('home.comparison.stats.timeSaved')}</p>
+                  <div className="text-3xl font-bold text-brand-blue mb-2 animate-bounce-in">90%</div>
+                  <p className="text-sm text-brand-blue">{t('home.comparison.stats.timeSaved')}</p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 hover-scale animate-delay-200">
+              <Card className="text-center bg-gradient-to-br from-brand-purple/5 to-brand-purple/10 border-brand-purple/20 hover-scale animate-delay-200">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-green-600 mb-2 animate-bounce-in">50+</div>
-                  <p className="text-sm text-green-700">{t('home.comparison.stats.hoursSaved')}</p>
+                  <div className="text-3xl font-bold text-brand-purple mb-2 animate-bounce-in">50+</div>
+                  <p className="text-sm text-brand-purple">{t('home.comparison.stats.hoursSaved')}</p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200 hover-scale animate-delay-400">
+              <Card className="text-center bg-gradient-to-br from-brand-blue/5 to-brand-purple/10 border-brand-blue/20 hover-scale animate-delay-400">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-purple-600 mb-2 animate-bounce-in">3x</div>
-                  <p className="text-sm text-purple-700">{t('home.comparison.stats.productivity')}</p>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent mb-2 animate-bounce-in">3x</div>
+                  <p className="text-sm bg-gradient-to-r from-brand-blue to-brand-purple bg-clip-text text-transparent">{t('home.comparison.stats.productivity')}</p>
                 </CardContent>
               </Card>
             </div>

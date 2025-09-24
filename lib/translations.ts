@@ -319,6 +319,9 @@ export const translations: Translations = {
   'home.metrics.faster.title': { en: 'Faster Task Completion', tr: 'Daha Hızlı Görev Tamamlama' },
   'home.metrics.reduction.title': { en: 'Reduction in Manual Work', tr: 'Manuel İşte Azalma' },
   'home.metrics.productivity.title': { en: 'Increase in Team Productivity', tr: 'Ekip Verimliliğinde Artış' },
+  'home.metrics.banner.title': { en: 'Time is Your Most Valuable Asset', tr: 'Zaman En Değerli Varlığınızdır' },
+  'home.metrics.banner.before': { en: 'Before', tr: 'Öncesi: Zaman Kaybı' },
+  'home.metrics.banner.after': { en: 'After', tr: 'Sonrası: Zaman Tasarrufu' },
 
   // Homepage FAQ Section
   'home.faq.title': { en: 'Frequently Asked Questions', tr: 'Sık Sorulan Sorular' },

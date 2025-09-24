@@ -117,7 +117,6 @@ export function HeroSection() {
     </section>
   )
 }
-
 function PetalCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -246,3 +245,4 @@ function PetalCanvas() {
     </div>
   )
 }
+
