@@ -5,7 +5,13 @@ import { ScrollReveal } from "@/components/scroll-reveal"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
+import dynamic from "next/dynamic"
+
+const SparklesCore = dynamic(() => import("@/components/core/sparkles-core").then(mod => mod.SparklesCore), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30" />,
+})
 
 export function HeroSection() {
   const { t, language } = useLanguage()
@@ -43,11 +49,29 @@ export function HeroSection() {
     return () => clearInterval(interval)
   }, [rotatingWords.length])
 
+  const sparklesBackground = useMemo(
+    () => (
+      <SparklesCore
+        id="perky-particles"
+        background="transparent"
+        minSize={0.8}
+        maxSize={2.5}
+        particleDensity={140}
+        className="w-full h-full"
+        particleColor="#9B30FF"
+        speed={2}
+      />
+    ),
+    [],
+  )
+
   return (
-    <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-muted/30 -z-20" />
-      {/* Cherry petal canvas animation */}
-      <PetalCanvas />
+    <section className="relative w-full py-16 md:py-20 lg:py-24 overflow-hidden bg-transparent">
+      {/* Sparkles Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {sparklesBackground}
+      </div>
+
       <div className="container px-4 md:px-6">
         <div className="grid md:grid-cols-2 items-center gap-12">
           <div>
@@ -83,9 +107,10 @@ export function HeroSection() {
           <div>
             <ScrollReveal direction="right" delay={250}>
               <div className="relative w-full mt-6 md:mt-0">
+                {/* Ellipse frame */}
                 <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
                   <span className="block w-[290%] md:w-[80%] h-[78%] md:h-[130%] rounded-full border border-white/20 dark:border-white/10 shadow-[0_0_40px_rgba(155,48,255,0.25)]" />
-                  {/* Revolving agents along ellipse */}
+                  {/* Orbiting agents */}
                   <div className="absolute inset-0 z-10 flex items-center justify-center">
                     <div className="relative w-[352%] md:w-[96.8%] h-[94.6%] md:h-[157.3%] origin-center animate-orbit-350-310" style={{ transformOrigin: '50% 50%' }}>
                       <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
@@ -106,7 +131,7 @@ export function HeroSection() {
                   alt="Perky hero illustration"
                   width={1280}
                   height={720}
-                  className="w-[46%] md:w-[60%] h-auto object-contain mx-auto"
+                  className="w-[46%] md:w-[60%] h-auto object-contain mx-auto relative z-10"
                   priority
                 />
               </div>
@@ -115,134 +140,6 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
-}
-function PetalCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const containerRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const container = containerRef.current
-    if (!canvas || !container) return
-
-    const ensuredCanvas = canvas as HTMLCanvasElement
-    const ensuredContainer = container as HTMLDivElement
-    const maybeCtx = ensuredCanvas.getContext('2d')
-    if (!maybeCtx) return
-    const drawCtx = maybeCtx as CanvasRenderingContext2D
-
-    let animationFrameId = 0
-    const TOTAL = 100
-    const petalArray: PetalParticle[] = []
-
-    const petalImg = new globalThis.Image()
-    petalImg.src = 'https://djjjk9bjm164h.cloudfront.net/petal.png'
-
-    function sizeToContainer() {
-      ensuredCanvas.width = Math.floor(window.innerWidth)
-      ensuredCanvas.height = Math.floor(window.innerHeight)
-    }
-
-    sizeToContainer()
-
-    let mouseX = 0
-    function touchHandler(e: MouseEvent | TouchEvent) {
-      // Use window width to preserve original behavior
-      const clientX = (e as TouchEvent).touches?.[0]?.clientX ?? (e as MouseEvent).clientX ?? 0
-      mouseX = window.innerWidth ? clientX / window.innerWidth : 0
-    }
-
-    window.addEventListener('mousemove', touchHandler)
-    window.addEventListener('touchmove', touchHandler, { passive: true })
-
-    function handleResize() {
-      sizeToContainer()
-    }
-    window.addEventListener('resize', handleResize)
-
-    class PetalParticle {
-      x: number
-      y: number
-      w: number
-      h: number
-      opacity: number
-      flip: number
-      xSpeed: number
-      ySpeed: number
-      flipSpeed: number
-
-      constructor() {
-        this.x = Math.random() * ensuredCanvas.width
-        this.y = (Math.random() * ensuredCanvas.height * 2) - ensuredCanvas.height
-        this.w = 25 + Math.random() * 15
-        this.h = 20 + Math.random() * 10
-        this.opacity = this.w / 40
-        this.flip = Math.random()
-        this.xSpeed = 0.2 + Math.random() * 1.0
-        this.ySpeed = 0.1 + Math.random() * 0.7
-        this.flipSpeed = Math.random() * 0.03
-      }
-
-      draw() {
-        if (this.y > ensuredCanvas.height || this.x > ensuredCanvas.width) {
-          this.x = -petalImg.width
-          this.y = (Math.random() * ensuredCanvas.height * 2) - ensuredCanvas.height
-          this.xSpeed = 0.5 + Math.random() * 1.0
-          this.ySpeed = 0.3 + Math.random() * 0.7
-          this.flip = Math.random()
-        }
-        drawCtx.globalAlpha = this.opacity
-        drawCtx.drawImage(
-          petalImg,
-          this.x,
-          this.y,
-          this.w * (0.6 + (Math.abs(Math.cos(this.flip)) / 3)),
-          this.h * (0.8 + (Math.abs(Math.sin(this.flip)) / 5))
-        )
-      }
-
-      animate() {
-        this.x += this.xSpeed + mouseX * 2
-        this.y += this.ySpeed + mouseX * 0.6
-        this.flip += this.flipSpeed
-        this.draw()
-      }
-    }
-
-    function render() {
-      drawCtx.clearRect(0, 0, ensuredCanvas.width, ensuredCanvas.height)
-      petalArray.forEach(p => p.animate())
-      animationFrameId = window.requestAnimationFrame(render)
-    }
-
-    function init() {
-      petalArray.length = 0
-      for (let i = 0; i < TOTAL; i++) {
-        petalArray.push(new PetalParticle())
-      }
-      render()
-    }
-
-    if (petalImg.complete) {
-      init()
-    } else {
-      petalImg.addEventListener('load', init)
-    }
-
-    return () => {
-      window.cancelAnimationFrame(animationFrameId)
-      petalImg.removeEventListener('load', init)
-      window.removeEventListener('resize', handleResize)
-      window.removeEventListener('mousemove', touchHandler)
-      window.removeEventListener('touchmove', touchHandler)
-    }
-  }, [])
-
-  return (
-    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none">
-      <canvas ref={canvasRef} className="w-full h-full" />
-    </div>
   )
 }
 
