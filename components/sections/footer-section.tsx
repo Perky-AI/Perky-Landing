@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
+
+import { SocialLinks } from "@/components/ui/social-links"
 import { useLanguage } from "@/lib/language-context"
 
 export function FooterSection() {
@@ -52,6 +54,23 @@ export function FooterSection() {
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="md:col-span-3 md:flex md:items-center md:justify-end">
+            <SocialLinks
+              socials={[
+                {
+                  name: "Instagram",
+                  image: "https://link-hover-lndev.vercel.app/instagram.png",
+                  href: "https://instagram.com/perky.tr/",
+                },
+                {
+                  name: "LinkedIn",
+                  image: "https://link-hover-lndev.vercel.app/linkedin.png",
+                  href: "https://www.linkedin.com/company/perky-tr",
+                },
+              ]}
+              className="md:justify-end"
+            />
           </div>
         </div>
         <div className="mt-8 pt-8 border-t flex justify-center">

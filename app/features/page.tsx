@@ -181,7 +181,7 @@ export default function FeaturesPage() {
                 </div>
               </div>
               <Image
-                src="/features-image.png"
+                src="/features-illus.png"
                 alt="Perky Workflow Demo"
                 width={600}
                 height={400}
