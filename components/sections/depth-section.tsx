@@ -152,7 +152,7 @@ const FeatureCard = ({ feature, index }: { feature: DepthFeature; index: number 
               transition={{ duration: 0.8, delay: index * 0.15 + 0.45 }}
               className="relative w-full"
             >
-              <div className="relative mx-auto w-full max-w-[1200px] aspect-[16/9]">
+              <div className="relative mx-auto w-full max-w-[1200px] aspect-[16/9] overflow-hidden rounded-lg md:rounded-xl">
                 <Image
                   src={feature.image.src}
                   alt={feature.image.alt}
