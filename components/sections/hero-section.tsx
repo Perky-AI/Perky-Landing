@@ -93,19 +93,19 @@ export function HeroSection() {
               <div className="relative w-full mt-6 md:mt-0">
                 {/* Ellipse frame */}
                 <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                  <span className="block w-[290%] md:w-[80%] h-[78%] md:h-[130%] rounded-full border border-white/20 dark:border-white/10 shadow-[0_0_40px_rgba(155,48,255,0.25)]" />
+                  <span className="block w-[120%] md:w-[80%] h-[120%] md:h-[130%] rounded-full border border-white/20 dark:border-white/10 shadow-[0_0_40px_rgba(155,48,255,0.25)]" />
                   {/* Orbiting agents */}
                   <div className="absolute inset-0 z-10 flex items-center justify-center">
-                    <div className="relative w-[352%] md:w-[96.8%] h-[94.6%] md:h-[157.3%] origin-center animate-orbit-350-310" style={{ transformOrigin: '50% 50%' }}>
+                    <div className="relative w-[145%] md:w-[96.8%] h-[145%] md:h-[157.3%] origin-center animate-orbit-mobile-335-310 md:animate-orbit-350-310" style={{ transformOrigin: '50% 50%' }}>
                       <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                        <Image src="/agent1.png" alt="Agent 1" width={56} height={56} className="h-10 w-10 md:h-14 md:w-14 transform scale-[2.5] bg-transparent" />
+                        <Image src="/agent1.png" alt="Agent 1" width={56} height={56} className="h-30 w-30 md:h-14 md:w-14 md:scale-[2.5] bg-transparent" />
                       </div>
                     </div>
                   </div>
                   <div className="absolute inset-0 z-10 flex items-center justify-center">
-                    <div className="relative w-[352%] md:w-[96.8%] h-[94.6%] md:h-[157.3%] origin-center animate-orbit-10-50" style={{ transformOrigin: '50% 50%' }}>
+                    <div className="relative w-[145%] md:w-[96.8%] h-[145%] md:h-[157.3%] origin-center animate-orbit-mobile-25-50 md:animate-orbit-10-50" style={{ transformOrigin: '50% 50%' }}>
                       <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                        <Image src="/agent2.png" alt="Agent 2" width={56} height={56} className="h-10 w-10 md:h-14 md:w-14 transform scale-[2.5] bg-transparent" />
+                        <Image src="/agent2.png" alt="Agent 2" width={56} height={56} className="h-30 w-30 md:h-14 md:w-14 md:scale-[2.5] bg-transparent" />
                       </div>
                     </div>
                   </div>
@@ -115,7 +115,7 @@ export function HeroSection() {
                   alt="Perky hero illustration"
                   width={1280}
                   height={720}
-                  className="w-[46%] md:w-[60%] h-auto object-contain mx-auto relative z-10"
+                  className="w-[77%] md:w-[60%] h-auto object-contain mx-auto relative z-10"
                   priority
                 />
               </div>

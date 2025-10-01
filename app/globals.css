@@ -87,6 +87,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
   }
 }
 
@@ -304,6 +308,12 @@
   .animate-orbit-10-50 {
     animation: orbitRangeB 3.2s ease-in-out infinite alternate;
   }
+  .animate-orbit-mobile-335-310 {
+    animation: orbitRangeMobileA 3.2s ease-in-out infinite alternate;
+  }
+  .animate-orbit-mobile-25-50 {
+    animation: orbitRangeMobileB 3.2s ease-in-out infinite alternate;
+  }
 }
 
 /* Keyframe Definitions */
@@ -475,6 +485,14 @@
 @keyframes orbitRangeB {
   0% { transform: rotate(40deg); }
   100% { transform: rotate(70deg); }
+}
+@keyframes orbitRangeMobileA {
+  0% { transform: rotate(335deg); }
+  100% { transform: rotate(310deg); }
+}
+@keyframes orbitRangeMobileB {
+  0% { transform: rotate(25deg); }
+  100% { transform: rotate(50deg); }
 }
 
 /* Reduced Motion Support */
