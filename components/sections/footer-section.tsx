@@ -38,11 +38,6 @@ export function FooterSection() {
                   {t('nav.pricing')}
                 </Link>
               </li>
-              <li>
-                <Link href="/integrations" className="text-sm text-muted-foreground hover:text-primary">
-                  {t('nav.integrations')}
-                </Link>
-              </li>
             </ul>
           </div>
           <div className="space-y-2">
