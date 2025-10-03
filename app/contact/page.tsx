@@ -52,46 +52,16 @@ export default function ContactPage() {
 
   return (
     <div className="bg-background text-foreground">
-      {/* Hero Section */}
-      <section className="py-20 md:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge variant="outline" className="mb-4">
-              {t('common.contactUs')}
-            </Badge>
-
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">{t('contact.hero.title')}</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              {t('contact.hero.description')}
-            </p>
-            
-            {/* Quick Contact Info */}
-            <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mt-12">
-              <div className="bg-muted/50 rounded-lg p-6">
-                <Mail className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="font-semibold mb-2">{t('contact.email.title')}</h3>
-                <p className="text-sm text-muted-foreground">info@perky.tr</p>
-                <p className="text-xs text-muted-foreground mt-1">{t('contact.response.time')}</p>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-6">
-                <Building className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="font-semibold mb-2">{t('contact.partnership.title')}</h3>
-                <p className="text-sm text-muted-foreground">info@perky.tr</p>
-                <p className="text-xs text-muted-foreground mt-1">{t('contact.partnership.description')}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Contact Methods */}
       <ScrollAnimation>
-        <section className="py-20 md:py-28 bg-muted/50">
+        <section className="py-20 md:py-32">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('contact.methods.title')}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('contact.hero.title')}</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                {t('contact.methods.subtitle')}
+                {t('contact.hero.description')}
               </p>
             </div>
 
